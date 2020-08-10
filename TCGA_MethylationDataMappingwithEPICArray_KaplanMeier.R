@@ -1,4 +1,4 @@
-setwd("/Users/fazal2/Desktop/MethylationData_Updated/Methylation_CorelationAnalysis_Selected/TCGA/")
+setwd("/Methylation_CorelationAnalysis_Selected/TCGA/")
 library(tidyverse)
 require(data.table)
 library("survival")

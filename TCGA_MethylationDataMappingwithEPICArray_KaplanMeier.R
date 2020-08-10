@@ -4,8 +4,8 @@ require(data.table)
 library("survival")
 library("survminer")
 
-DMPs<-read_tsv("/Users/fazal2/Desktop/tidy_practice/B3_Case1_Beta0.5_0.05FDR.txt")
-clinical<-read_tsv("/Users/fazal2/Desktop/tidy_practice/tgct_tcga_clinical_data.tsv")
+DMPs<-read_tsv("B3_Case1_Beta0.5_0.05FDR.txt")
+clinical<-read_tsv("tgct_tcga_clinical_data.tsv")
 
 colnames(clinical)<-c("ID","PID","Sample_ID","CancerType","DSF_Time","DFS_Status")
 reform_clin=melt(clinical)
@@ -63,10 +63,10 @@ Methy_Clinical$event[no_event]="0"
 Methy_Clinical$CancerType <- as.character(Methy_Clinical$CancerType)
 Methy_Clinical$CancerType[Methy_Clinical$CancerType == "Non-Seminomatous Germ Cell Tumor" | Methy_Clinical$CancerType == "Embryonal Carcinoma" ] <- "Non-Seminoma"
 
-write_tsv(Methy_Clinical, path = "/Users/fazal2/Desktop/tidy_practice/B3_Case1_Beta0.5_0.05FDR_Clinical.tsv")
+write_tsv(Methy_Clinical, path = "B3_Case1_Beta0.5_0.05FDR_Clinical.tsv")
 
 #run KM
-case <- read.table("/Users/fazal2/Desktop/tidy_practice/B3_Case1_Beta0.5_0.05FDR_Clinical.tsv", quote="", comment="", sep="\t", header=TRUE, na.strings=c("NA","NaN", " ", "?"))
+case <- read.table("B3_Case1_Beta0.5_0.05FDR_Clinical.tsv", quote="", comment="", sep="\t", header=TRUE, na.strings=c("NA","NaN", " ", "?"))
 head(case)
 fit <- survfit(Surv(case$Time, case$event) ~ case$level, data = case)
 print(fit)
